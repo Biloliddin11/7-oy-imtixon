@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+.custom-tabs .ant-tabs-tab-active {
+  color: #46A358 !important;
+  font-weight: bold;
+}
+
+
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: #46A358 !important;
+}
+
+
+.custom-tabs .ant-tabs-tab:hover {
+  color: #3CB371;
+}
+
+
+.custom-tabs .tab-label {
+  color: #3D3D3D; 
+  font-weight: 700;
+	font-size: #3D3D3D;
+	line-height: 16px;
+}
+
+
+.custom-tabs .ant-tabs-tab-active .tab-label {
+  color: #46A358 !important;
+  font-weight: bold;
+}
+
+
+.custom-tabs .ant-tabs-tab:hover .tab-label {
+  color: #3CB371;
+}
+
+
+
