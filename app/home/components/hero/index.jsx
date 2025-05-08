@@ -29,7 +29,7 @@ const Hero = () => {
 	]
 
 	return (
-		<div className='max-w-[1200px] md:h-[calc(80vh)]  mx-auto mt-[12px] overflow-hidden rounded-[30px] md:rounded-none bg-linear-to-bl  from-[#46A35833] to-[#46A3581A] md:from-[#F5F5F580] md:to-[#F5F5F580]'>
+		<div className='max-w-[1200px] md:h-[450px]  mx-auto mt-[12px] overflow-hidden rounded-[30px] md:rounded-none bg-linear-to-bl  from-[#46A35833] to-[#46A3581A] md:from-[#F5F5F580] md:to-[#F5F5F580]'>
 			
 			<Carousel
 				autoplay
@@ -38,7 +38,7 @@ const Hero = () => {
 				
 			>
 				{heroSlider.map((item, index) => (
-					<div key={index} className='max-w-[1200px] h-[calc(80vh)] rounded-[30px]'>
+					<div key={index} className='max-w-[1200px] h-[450px] rounded-[30px]'>
 						<div className='px-6 md:px-20 py-12 flex h-full items-center  max-w-[1200px]  mx-auto'>
 							<div className=' space-y-5'>
 								<p className='text-sm tracking-widest text-gray-500 font-medium'>

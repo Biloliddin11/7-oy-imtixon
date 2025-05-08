@@ -1,9 +1,12 @@
+'use client';
+
 import { Rate } from 'antd'
 import { Heart, Search, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
+import { useState} from 'react';
 
 const Card = ({ product }) => {
+	const [selectedProduct, setSelectedProduct] = useState(null);
 
 
 	return (
@@ -20,7 +23,7 @@ const Card = ({ product }) => {
 
 				
 			</div>
-			<div className='px-[5px] mt-[12px]'>
+			<div className='px-[5px] mt-[12px]'   onClick={() => navigate(`/product/${selectedProduct.id}`)} >
 				<p className='text-[16px] leading-[16px]  h-[40px] text-[#3D3D3D] font-bold'>
 					<Link href={`/product/${product?.id}`}>{product?.title}</Link>
 				</p>

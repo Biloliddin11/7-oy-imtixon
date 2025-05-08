@@ -15,7 +15,7 @@ const Cotegory = async ({categories}) => {
 			<ul className='mt-[8px]  pl-[12px]'>
 				{
 					data?.map(({name , slug})=>(
-					<li key={slug} className={`${categories == slug ? "text-[#46A358] font-bold" : "font-normal"} hover:text-[#46A358] leading-[40px] text-[15px]  text-[#3D3D3D] duration-[0.3s] hover:font-bold`} >
+					<li key={slug} className={`${categories == slug ?  "border-gray-500 text-[#46A358] font-bold" : "font-normal"} hover:text-[#46A358] leading-[40px] text-[15px]  text-[#3D3D3D] duration-[0.3s] hover:font-bold`} >
 						<Link href={`?category=${slug}`} scroll={false}>
 							{name}
 						</Link>

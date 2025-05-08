@@ -1,23 +1,31 @@
 'use client'
+import { useEffect, useState } from 'react';
+import { IoSearch } from 'react-icons/io5';
+import axios from 'axios';
 
-import useFilterStore from '@/app/redux/openFilter'
-import { SlidersHorizontal } from 'lucide-react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+
+
 
 const Search = () => {
-	const { authFilter, authFilterSet } = useFilterStore();
-	const searchParams = useSearchParams();
-	const [query, setQuery] = useState('')
-	const router = useRouter()
-
+	const [search, setSearch] = useState('');
+	const [data, setData] = useState(null);
+	const api = axios.create({
+		baseURL: "https://dummyjson.com",
+	});
+	
+  
 	useEffect(() => {
-		if (searchParams.has('search')) {
-			const params = new URLSearchParams(searchParams.toString());
-			params.delete('search');
-			router.replace(`?${params.toString()}`, { scroll: false });
-		}
-	}, []);
+	  if (search) {
+		api
+		  .get(`/products/search?q=${search}`, {
+			params: { limit: 10 },
+		  })
+		  .then((res) => {
+			setData(res.data);
+			console.log(res.data);
+		  });
+	  }
+	}, [search]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,13 +39,38 @@ const Search = () => {
 
 
 	return (
-		<div>
-			<div className="w-full mb-[30px] pt-[14px] flex gap-[10px]">
-				 <input type="text" className='w-full focus:text-[#46A358] outline-none rounded-[30px] px-[15px] h-[40px] border-[1px] border-[#46A358]' placeholder='Search By Title' onChange={(e)=>{setQuery(e.target.value)}} />
-				 <button className='bg-[#46A358] border-[1px] border-[#46A358] duration-300 px-[20px] py-[10px] rounded-[6px] text-white font-bold hover:bg-white hover:text-[#46A358]' onClick={handleSubmit}>Search</button>
-				 <button onClick={authFilterSet} className='md:hidden bg-linear-to-r flex justify-center items-center from-[#46A35873] to-[#46A358] text-white h-[45px] rounded-[14px] w-[60px]'><SlidersHorizontal /></button>
-			</div>
-		</div>
+		<div className="relative flex items-center">
+		<form action="" className="bg-transparent p-4 rounded-lg flex items-center space-x-0">
+		  <input
+			type="text"
+			placeholder="Search"
+			className="w-full p-2 bg-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-500 ease-in-out"
+			onChange={(e) => setSearch(e.target.value)}
+			onBlur={() => setSearch('')}
+		  />
+		  <button type="button" className="p-2 bg-teal-500 text-white rounded-r-lg hover:bg-teal-600 transition duration-500 ease-in-out">
+			<IoSearch size={24} />
+		  </button>
+		</form>
+		{data && data.products.length > 0 && search && data.total > 0 && (
+		  <div className="overflow-auto max-h-[400px] absolute top-12 left-0 right-0 z-10 mt-2 bg-gray-800 p-4 rounded-lg shadow-xl animate-fadeIn space-y-4">
+			{data.products.map((item) => (
+			  <div
+				key={item.id}
+				className="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105"
+			  >
+				<img
+				  src={item.thumbnail}
+				  alt={item.title}
+				  className="w-16 h-16 rounded-lg transition duration-300 ease-in-out transform hover:scale-110"
+				/>
+				<p className="text-white text-base font-medium">{item.title}</p>
+			  </div>
+			))}
+		  </div>
+		)}
+		
+	  </div>
 	)
 }
 

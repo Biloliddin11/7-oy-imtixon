@@ -15,6 +15,7 @@ const Components = ({query , categories}) => {
 			<div className="mt-[46px]">
 					<Products query={query} categories={categories}/>
 			</div>
+			
 
 		</div>
 	)
