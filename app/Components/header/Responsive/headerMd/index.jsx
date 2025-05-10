@@ -56,7 +56,7 @@ const HeaderMD = () => {
 					
 					</li>
 					<li>
-						<Link href={'/'}>
+						<Link href={'/cart'}>
 							<ShoppingCart />
 						</Link>
 					</li>
